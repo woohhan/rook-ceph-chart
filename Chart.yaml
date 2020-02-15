@@ -1,0 +1,6 @@
+apiVersion: v2
+name: rook-ceph-chart
+description: A Helm chart for rook-ceph
+type: application
+version: 1.0.0
+appVersion: 1.2.4
