@@ -1,0 +1,24 @@
+name: e2e
+on: [pull_request, push]
+jobs:
+  k8s:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        k8s: [v1.17.3, v1.16.7, v1.15.10]
+    steps:
+    - name: Ready minikube
+      uses: manusa/actions-setup-minikube@v1.0.0
+      with:
+        minikube version: 'v1.7.2'
+        kubernetes version: ${{ matrix.k8s }}
+    - run: kubectl get nodes
+    - name: Ready helm
+      run: |
+        wget https://get.helm.sh/helm-v3.1.0-linux-amd64.tar.gz && tar -zxvf helm-v3.1.0-linux-amd64.tar.gz && sudo mv linux-amd64/helm /usr/local/bin/helm
+        helm version
+    - uses: actions/checkout@v1
+    - name: install
+      run: ./hack.sh i
+    - name: uninstall
+      run: ./hack.sh u
