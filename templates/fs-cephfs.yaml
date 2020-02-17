@@ -45,6 +45,7 @@ spec:
     #  - key: mds-node
     #    operator: Exists
     #  podAffinity:
+       {{- if .Values.filesystem.podAntiAffinity }}
        podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
@@ -68,6 +69,7 @@ spec:
               # Use <topologyKey: failure-domain.beta.kubernetes.io/zone> in k8s cluster if your cluster is v1.16 or lower
               # Use <topologyKey: topology.kubernetes.io/zone>  in k8s cluster is v1.17 or upper
               topologyKey: topology.kubernetes.io/zone
+       {{- end }}
     # A key/value list of annotations
     annotations:
     #  key: value

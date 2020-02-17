@@ -1,16 +1,10 @@
-# Hypercloud Storage Helm Charts
-Hypercloud Storage를 Helm으로 설치 가능하게 합니다. 현재는 minikube에서만 지원합니다.
+# Rook-Ceph Helm Chart ![e2e](https://github.com/woohhan/rook-ceph-chart/workflows/e2e/badge.svg)
+A helm chart for [rook/rook](https://github.com/rook/rook) Ceph
 
-# Helm 설치
-아래 환경에서 테스트되었습니다.
+## What is diff?
 
-- Helm v3.1.0
-- k8s 1.16.2
-
-```shell
-# 설치
-minikube ssh "sudo mkdir -p /mnt/sda1/var/lib/rook" && helm install hypercloud-storage charts
-
-# 제거
-helm delete hypercloud-storage; minikube ssh "sudo rm -rf /var/lib/rook"; minikube ssh "sudo rm -rf /mnt/sda1/var/lib/rook"
-```
+## Quick Start
+1. Install Helm(>3.0): [Installing Helm](https://helm.sh/docs/intro/install/)
+2. Check `values.yaml` file
+3. Install with: `helm install rook-ceph .`
+4. Uninstall with: `helm uninstall rook-ceph`
